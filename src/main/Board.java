@@ -1,5 +1,6 @@
 package main;
 import Pieces.Pawn;
+import Pieces.Knight;
 import Pieces.Piece;
 
 public class Board {
@@ -37,6 +38,8 @@ public class Board {
 	public static void boardInit() {
 		board[1][6] = new Pawn("wp" , "black");
 //		board[4][1] = new Pawn("wp" , "black");
+		board[1][0] = new Knight("wN", "white" );
+		board[0][2] = new Knight("wN","black");
 	}
 	
 	
@@ -77,8 +80,14 @@ public static boolean isLegalMove(String move, boolean whiteTurn) {
 	move = move.replaceAll("\\s", "");
 	int origLocRow = move.charAt(0) - 97;
 	int origLocCol = Character.getNumericValue(move.charAt(1)) - 1;
+	int newLocRow = move.charAt(2) - 97;
+	int newLocCol = Character.getNumericValue(move.charAt(3)) - 1;
 	
 	if( Board.isEmpty(origLocRow, origLocCol)  ||  Board.isBlack(origLocRow, origLocCol) == whiteTurn) {
+		return false;
+	}
+	else if(!Board.isEmpty(newLocRow, newLocCol) && Board.isBlack(newLocRow, newLocCol) != whiteTurn)
+	{
 		return false;
 	}
 	else {
