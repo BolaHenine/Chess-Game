@@ -80,26 +80,6 @@ private boolean isFirstMove = true;
 		return false;
 	}
 	
-//	
-//	public static void main(String[] args) {
-//		Piece test = new Pawn("wp", "black");
-//		
-//		Board.boardInit();
-//		
-//		
-//		String s = "b7 e4";
-//		
-//		s.trim();
-//		int y = s.charAt(0) - 97;
-//		int x = Character.getNumericValue(s.charAt(1)) - 1;
-//		
-//		System.out.print(y + " " + x);
-//		
-//		//System.out.print(Board.getPieceName(0,1));
-//	
-//		
-//
-//	}
 
 }
 
