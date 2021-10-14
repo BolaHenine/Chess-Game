@@ -1,5 +1,6 @@
 package main;
 import Pieces.Pawn;
+import Pieces.King;
 import Pieces.Knight;
 import Pieces.Piece;
 
@@ -36,10 +37,10 @@ public class Board {
 	
 	
 	public static void boardInit() {
-		board[1][6] = new Pawn("wp" , "black");
 //		board[4][1] = new Pawn("wp" , "black");
-		board[1][0] = new Knight("wN", "white" );
-		board[0][2] = new Knight("wN","black");
+//		board[1][0] = new Knight("wN", "white" );
+//		board[0][2] = new Knight("wN","black");
+		board[4][2] = new King("wK", "white");
 	}
 	
 	

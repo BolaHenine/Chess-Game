@@ -6,8 +6,8 @@ public class MainDriver {
 
 	public static void main(String[] args) {
 
-		boolean whiteTurn = true;
-		String s = "b1 a3";
+		boolean whiteTurn = false;
+		String s = "e3 e2";
 		s = s.replaceAll("\\s", "");
 		int newLocRow = s.charAt(2) - 97;
 		int newLocCol = Character.getNumericValue(s.charAt(3)) - 1;
