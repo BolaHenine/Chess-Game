@@ -10,7 +10,7 @@ public class Pawn extends Piece {
 		super(pieceName, color);
 		// TODO Auto-generated constructor stub
 	}
-
+	// checks if legal move
 	@Override
 	public boolean isLegalMove(String move) {
 		move = move.replaceAll("\\s", "");
