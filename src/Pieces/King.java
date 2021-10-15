@@ -12,11 +12,10 @@ public class King extends Piece {
 	@Override
 	public boolean isLegalMove(String move) {
 		move = move.replaceAll("\\s", "");
-		int origLocRow = move.charAt(0) - 97;
-		int origLocCol = Character.getNumericValue(move.charAt(1)) - 1;
-		
-		int newLocRow = move.charAt(2) - 97;
-		int newLocCol = Character.getNumericValue(move.charAt(3)) - 1;
+		int origLocRow = 8 - Character.getNumericValue(move.charAt(1));
+		int origLocCol = Character.getNumericValue(move.charAt(0)) - 10;
+		int newLocRow = 8 - Character.getNumericValue(move.charAt(3));
+		int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
 		
 		
 		if(Board.inBound(newLocRow, newLocCol) && Board.inBound(origLocRow, origLocCol)) {
