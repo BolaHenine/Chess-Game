@@ -41,8 +41,15 @@ public class Board {
 //		board[4][1] = new Pawn("wp" , "black");
 //		board[1][0] = new Knight("wN", "white" );
 //		board[0][2] = new Knight("wN","black");
-		board[7][2] = new King("wK", "black");
+		board[5][2] = new King("bK", "black");
+		board[3][2] = new King("wK", "white");
+		
 		board[7][0] = new Rook("wR", "white");
+		board[4][0] = new Rook("wR", "white");
+		board[7][3] = new Knight("wN", "white");
+		
+		board[1][6] = new Rook("bR", "black");
+		board[3][5] = new Rook("bR", "black");
 	}
 	
 	
@@ -63,59 +70,59 @@ public class Board {
 		return null;
 	}
 	
-public static boolean isBlack(int row, int col) {
-		
-	
-		if(board[row][col].isBlack()) { 	
-			return true;
+	public static boolean isBlack(int row, int col) {
 			
+		
+			if(board[row][col].isBlack()) { 	
+				return true;
+				
+			}
+			else {
+				return false; 
+			}
+			
+			
+			
+	}
+
+
+	public static boolean isLegalMove(String move, boolean whiteTurn) {
+		move = move.replaceAll("\\s", "");
+		int origLocRow = 8 - Character.getNumericValue(move.charAt(1));
+		int origLocCol = Character.getNumericValue(move.charAt(0)) - 10;
+		int newLocRow = 8 - Character.getNumericValue(move.charAt(3));
+		int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
+		
+		
+		if( Board.isEmpty(origLocRow, origLocCol)  ||  Board.isBlack(origLocRow, origLocCol) == whiteTurn) {
+			return false;
+		}
+		else if(!Board.isEmpty(newLocRow, newLocCol) && Board.isBlack(newLocRow, newLocCol) != whiteTurn)
+		{
+			return false;
 		}
 		else {
-			return false; 
+			return board[origLocRow][origLocCol].isLegalMove(move);
 		}
 		
 		
 		
 	}
-
-
-public static boolean isLegalMove(String move, boolean whiteTurn) {
-	move = move.replaceAll("\\s", "");
-	int origLocRow = 8 - Character.getNumericValue(move.charAt(1));
-	int origLocCol = Character.getNumericValue(move.charAt(0)) - 10;
-	int newLocRow = 8 - Character.getNumericValue(move.charAt(3));
-	int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
 	
 	
-	if( Board.isEmpty(origLocRow, origLocCol)  ||  Board.isBlack(origLocRow, origLocCol) == whiteTurn) {
-		return false;
+	public static Piece[][] move(String move){
+		move = move.replaceAll("\\s", "");
+		int origLocRow = 8 - Character.getNumericValue(move.charAt(1));
+		int origLocCol = Character.getNumericValue(move.charAt(0)) - 10;
+		int newLocRow = 8 - Character.getNumericValue(move.charAt(3));
+		int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
+		
+		board[newLocRow][newLocCol] = board[origLocRow][origLocCol];
+		
+		board[origLocRow][origLocCol] = null;
+		
+		return board;
 	}
-	else if(!Board.isEmpty(newLocRow, newLocCol) && Board.isBlack(newLocRow, newLocCol) != whiteTurn)
-	{
-		return false;
-	}
-	else {
-		return board[origLocRow][origLocCol].isLegalMove(move);
-	}
-	
-	
-	
-}
-	
-	
-public static Piece[][] move(String move){
-	move = move.replaceAll("\\s", "");
-	int origLocRow = 8 - Character.getNumericValue(move.charAt(1));
-	int origLocCol = Character.getNumericValue(move.charAt(0)) - 10;
-	int newLocRow = 8 - Character.getNumericValue(move.charAt(3));
-	int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
-	
-	board[newLocRow][newLocCol] = board[origLocRow][origLocCol];
-	
-	board[origLocRow][origLocCol] = null;
-	
-	return board;
-}
 
 	public static void printBoard() {
 		
@@ -163,7 +170,74 @@ public static Piece[][] move(String move){
 		System.out.println();
 		System.out.println();
 	}
-			
 	
-
+	
+	public static boolean isCheck(boolean whiteTurn) {
+		int kingCol = 0;
+		int kingRow = 0;
+		String move = "";
+		
+			for(int i = 0; i < 8; i++) {
+				for(int j = 0; j < 8; j++) {
+					if(Board.getPieceName(i, j) != null) {
+						if(Board.getPieceName(i, j).charAt(1) == 'K' && Board.isBlack(i, j) == whiteTurn ) {
+							kingRow = 8 - i;
+							kingCol = j;
+						}
+					}
+					
+				}
+			}
+			
+			for(int i = 0; i < 8; i++) {
+				for(int j = 0; j < 8; j++) {
+					if(Board.getPieceName(i, j) != null && Board.isBlack(i, j) != whiteTurn) {
+						move += ((char) (j + 97)) + "" + (8- i) + " " + ((char) (kingCol + 97)) + "" + kingRow;
+						if(board[i][j].isLegalMove(move)){
+							move = "";
+							return true;
+							
+						}
+						else {
+							move = "";
+						}
+					}
+					move = "";
+				}
+			}
+//		}
+//		else {
+//			for(int i = 0; i < 8; i++) {
+//				for(int j = 0; j < 8; j++) {
+//					if(Board.getPieceName(i, j) != null) {
+//						if(Board.getPieceName(i, j).charAt(1) == 'K' && Board.isBlack(i, j) == whiteTurn ) {
+//							kingRow = 8 - i;
+//							kingCol = j;
+//						}
+//					}
+//					
+//				}
+//			}
+//			
+//			for(int i = 0; i < 8; i++) {
+//				for(int j = 0; j < 8; j++) {
+//					if(Board.getPieceName(i, j) != null && Board.isBlack(i, j) != whiteTurn) {
+//						move += ((char) (j + 97)) + "" + (8- i) + " " + ((char) (kingCol + 97)) + "" + kingRow;
+//						System.out.println(move);
+//						if(board[i][j].isLegalMove(move)){
+//							move = "";
+//							return true;
+//							
+//						}
+//						else {
+//							move = "";
+//						}
+//					}
+//					move = "";
+//				}
+//			}
+//		}
+		return false;
+	}
+			
 }

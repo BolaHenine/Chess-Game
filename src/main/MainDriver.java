@@ -7,7 +7,7 @@ public class MainDriver {
 	public static void main(String[] args) {
 
 		boolean whiteTurn = true;
-		String s = "a1 c1";
+		String s = "a1 c3";
 		s = s.replaceAll("\\s", "");
 		int origLocRow = 8 - Character.getNumericValue(s.charAt(1));
 		int origLocCol = Character.getNumericValue(s.charAt(0)) - 10;
@@ -24,7 +24,7 @@ public class MainDriver {
 		}
 		
 		Board.boardInit();
-		System.out.println(Board.isLegalMove(s, whiteTurn));
+		System.out.println(Board.isLegalMove(s, !whiteTurn));
 //		
 //		
 //		System.out.println(Board.getPieceName(0, 2));
@@ -34,13 +34,28 @@ public class MainDriver {
 //	
 		
 		
+//		System.out.println(Board.getPieceName(7, 2).charAt(1));
+//		System.out.println(Board.isBlack(7, 2));
 		
-		
+	
 		Board.printBoard();
+		System.out.println("Black King Check: " + Board.isCheck(whiteTurn));
+		System.out.println("White King Check: " + Board.isCheck(!whiteTurn));
+//		Board.isCheck(whiteTurn);
 		
-		Board.move(s);
-
-		Board.printBoard();
+		
+	
+		
+//		
+//		Board.move(s);
+//
+//		Board.printBoard();
 	}
 
 }
+
+
+
+
+// Board[Row][Column]
+// User input [Col][Row] so it must be switched
