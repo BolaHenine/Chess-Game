@@ -41,8 +41,8 @@ public class Board {
 //		board[4][1] = new Pawn("wp" , "black");
 //		board[1][0] = new Knight("wN", "white" );
 //		board[0][2] = new Knight("wN","black");
-		board[5][2] = new King("bK", "black");
-		board[3][2] = new King("wK", "white");
+//		board[5][2] = new King("bK", "black");
+		board[4][2] = new King("wK", "white");
 		
 		board[7][0] = new Rook("wR", "white");
 		board[4][0] = new Rook("wR", "white");
@@ -50,6 +50,10 @@ public class Board {
 		
 		board[1][6] = new Rook("bR", "black");
 		board[3][5] = new Rook("bR", "black");
+		board[2][3] = new Rook("bR", "black");
+		board[7][1] = new Rook("bR", "black");
+		board[5][0] = new Rook("bR", "black");
+		board[2][2] = new Rook("bR", "black");
 	}
 	
 	
@@ -99,6 +103,9 @@ public class Board {
 		}
 		else if(!Board.isEmpty(newLocRow, newLocCol) && Board.isBlack(newLocRow, newLocCol) != whiteTurn)
 		{
+			return false;
+		}
+		else if(!Board.inBound(newLocRow, newLocCol)) {
 			return false;
 		}
 		else {
@@ -205,39 +212,97 @@ public class Board {
 					move = "";
 				}
 			}
-//		}
-//		else {
-//			for(int i = 0; i < 8; i++) {
-//				for(int j = 0; j < 8; j++) {
-//					if(Board.getPieceName(i, j) != null) {
-//						if(Board.getPieceName(i, j).charAt(1) == 'K' && Board.isBlack(i, j) == whiteTurn ) {
-//							kingRow = 8 - i;
-//							kingCol = j;
-//						}
-//					}
-//					
-//				}
-//			}
-//			
-//			for(int i = 0; i < 8; i++) {
-//				for(int j = 0; j < 8; j++) {
-//					if(Board.getPieceName(i, j) != null && Board.isBlack(i, j) != whiteTurn) {
-//						move += ((char) (j + 97)) + "" + (8- i) + " " + ((char) (kingCol + 97)) + "" + kingRow;
-//						System.out.println(move);
-//						if(board[i][j].isLegalMove(move)){
-//							move = "";
-//							return true;
-//							
-//						}
-//						else {
-//							move = "";
-//						}
-//					}
-//					move = "";
-//				}
-//			}
-//		}
 		return false;
 	}
+	
+	public static boolean isCheckMate(boolean whiteTurn) {
+		int kingCol = 0;
+		int kingRow = 0;
+		int tempCol = 0;
+		int tempRow = 0;
+		
+		
+		for(int i = 0; i < 8; i++) {
+			for(int j = 0; j < 8; j++) {
+				if(Board.getPieceName(i, j) != null) {
+					if(Board.getPieceName(i, j).charAt(1) == 'K' && Board.isBlack(i, j) == whiteTurn ) {
+						kingRow = 8 - i;
+						kingCol = j;
+					}
+				}
+				
+			}
+		}
+		
+//		move +=  ((char) (kingCol + 97)) + "" + kingRow;
+//		System.out.println(move);
+		
+		
+		for(int i = 0; i < 4 ; i++ ) {
+			String move = "";
+			String moveBack = "";
+			if(i == 0) {
+				tempCol = kingCol + 1;
+				tempRow = kingRow;
+				move = ((char) (kingCol + 97)) + "" + (kingRow) + " " + ((char) (tempCol + 97)) + "" + (tempRow);
+				moveBack = ((char) (tempCol + 97)) + "" + (tempRow) + " " + ((char) (kingCol + 97)) + "" + (kingRow);
+				if(Board.isLegalMove(move, !whiteTurn)) {
+					Board.move(move);
+					if(!Board.isCheck(whiteTurn)) {
+						Board.move(moveBack);
+						return false;
+					}
+					Board.move(moveBack);
+				}
+			}
+			else if(i == 1 ) {
+				tempCol = kingCol;
+				tempRow = kingRow + 1;
+				move = ((char) (kingCol + 97)) + "" + (kingRow) + " " + ((char) (tempCol + 97)) + "" + (tempRow);
+				moveBack = ((char) (tempCol + 97)) + "" + (tempRow) + " " + ((char) (kingCol + 97)) + "" + (kingRow);
+				if(Board.isLegalMove(move, !whiteTurn)) {
+					Board.move(move);
+					if(!Board.isCheck(whiteTurn)) {
+						Board.move(moveBack);
+						return false;
+					}
+					Board.move(moveBack);
+				}
+			}
+			else if(i == 2) {
+				tempCol = kingCol - 1;
+				tempRow = kingRow;
+				move = ((char) (kingCol + 97)) + "" + (kingRow) + " " + ((char) (tempCol + 97)) + "" + (tempRow);
+				moveBack = ((char) (tempCol + 97)) + "" + (tempRow) + " " + ((char) (kingCol + 97)) + "" + (kingRow);
+				if(Board.isLegalMove(move, !whiteTurn)) {
+					Board.move(move);
+					if(!Board.isCheck(whiteTurn)) {
+						Board.move(moveBack);
+						return false;
+					}
+					Board.move(moveBack);
+				}
+			}
+			else if(i == 3) {
+				tempCol = kingCol;
+				tempRow = kingRow - 1;
+				move = ((char) (kingCol + 97)) + "" + (kingRow) + " " + ((char) (tempCol + 97)) + "" + (tempRow);
+				moveBack = ((char) (tempCol + 97)) + "" + (tempRow) + " " + ((char) (kingCol + 97)) + "" + (kingRow);
+				if(Board.isLegalMove(move, !whiteTurn)) {
+					Board.move(move);
+					if(!Board.isCheck(whiteTurn)) {
+						Board.move(moveBack);
+						return false;
+					}
+					Board.move(moveBack);
+				}
+			}
 			
+		}
+
+		
+			
+		return true;
+	}
+	
 }

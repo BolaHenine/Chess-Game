@@ -7,7 +7,7 @@ public class MainDriver {
 	public static void main(String[] args) {
 
 		boolean whiteTurn = true;
-		String s = "a1 c3";
+		String s = "c4 d4";
 		s = s.replaceAll("\\s", "");
 		int origLocRow = 8 - Character.getNumericValue(s.charAt(1));
 		int origLocCol = Character.getNumericValue(s.charAt(0)) - 10;
@@ -24,7 +24,7 @@ public class MainDriver {
 		}
 		
 		Board.boardInit();
-		System.out.println(Board.isLegalMove(s, !whiteTurn));
+		System.out.println(Board.isLegalMove(s, whiteTurn));
 //		
 //		
 //		System.out.println(Board.getPieceName(0, 2));
@@ -39,8 +39,11 @@ public class MainDriver {
 		
 	
 		Board.printBoard();
-		System.out.println("Black King Check: " + Board.isCheck(whiteTurn));
+//		System.out.println("Black King Check: " + Board.isCheck(whiteTurn));
 		System.out.println("White King Check: " + Board.isCheck(!whiteTurn));
+		
+		System.out.println(Board.isCheckMate(!whiteTurn));
+//		System.out.print("c5");
 //		Board.isCheck(whiteTurn);
 		
 		
@@ -59,3 +62,8 @@ public class MainDriver {
 
 // Board[Row][Column]
 // User input [Col][Row] so it must be switched
+// checkmate is checked after turn for example if black makes his moves it switches to white turn and then check
+// for checkmate and then gives turn to white.
+
+// for islegal we send the correct color.
+// for checkmate and check we send the opposite color.
