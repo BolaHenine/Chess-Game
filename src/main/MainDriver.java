@@ -1,31 +1,53 @@
 package main;
 import main.Board;
+
+import java.util.Scanner;
+
 import Pieces.Pawn;
 import Pieces.Piece;
 public class MainDriver {
 
 	public static void main(String[] args) {
-
-		boolean whiteTurn = false;
-		String s = "g6 g8";
-		s = s.replaceAll("\\s", "");
-		int origLocRow = 8 - Character.getNumericValue(s.charAt(1));
-		int origLocCol = Character.getNumericValue(s.charAt(0)) - 10;
-		int newLocRow = 8 - Character.getNumericValue(s.charAt(3));
-		int newLocCol = Character.getNumericValue(s.charAt(2)) - 10;
-		
-		
-		
-		if(whiteTurn) {
-			System.out.println("White turn");
-		}
-		else {
-			System.out.println("Black turn");
-		}
-		
 		Board.boardInit();
-		System.out.println(Board.isLegalMove(s, whiteTurn));
-//		
+		Board.printBoard();
+		boolean whiteTurn = true;
+		Scanner sc = new Scanner(System.in);
+		String move = "";
+		while(!Board.isCheckMate(!whiteTurn) == true || !Board.isCheckMate(whiteTurn)==true) {
+			if(whiteTurn) {
+				System.out.println("White Turn: ");
+				move = sc.nextLine();
+				while(!Board.isLegalMove(move, whiteTurn)) {
+					System.out.println("Illegal Move, Enter another move: ");
+					move = sc.nextLine();
+				}
+				Board.move(move);
+				Board.printBoard();
+				whiteTurn = !whiteTurn;
+				
+			}
+			else {
+				System.out.print("Black Turn: ");
+				move = sc.nextLine();
+				while(!Board.isLegalMove(move, whiteTurn)) {
+					System.out.println("Illegal Move, Enter another move: ");
+					move = sc.nextLine();
+				}
+				Board.move(move);
+				Board.printBoard();
+				whiteTurn = !whiteTurn;
+			}
+		}
+		
+		
+		
+		
+		 
+		
+		
+		
+//		System.out.println(Board.isLegalMove(move, whiteTurn));
+//		s
 //		
 //		System.out.println(Board.getPieceName(0, 2));
 //		
@@ -38,11 +60,12 @@ public class MainDriver {
 //		System.out.println(Board.isBlack(7, 2));
 		
 	
-		Board.printBoard();
-		Board.move(s);
-		Board.printBoard();
+//		Board.printBoard();
 //		System.out.println("Black King Check: " + Board.isCheck(whiteTurn));
 //		System.out.println("White King Check: " + Board.isCheck(!whiteTurn));
+//		
+//		System.out.println(Board.isCheckMate(!whiteTurn));
+//		System.out.print("c5");
 //		Board.isCheck(whiteTurn);
 		
 		
@@ -61,3 +84,8 @@ public class MainDriver {
 
 // Board[Row][Column]
 // User input [Col][Row] so it must be switched
+// checkmate is checked after turn for example if black makes his moves it switches to white turn and then check
+// for checkmate and then gives turn to white.
+
+// for islegal we send the correct color.
+// for checkmate and check we send the opposite color.
