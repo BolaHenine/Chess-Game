@@ -20,42 +20,42 @@ public class Pawn extends Piece {
 		int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
 		
 		if(Board.inBound(newLocRow, newLocCol) && Board.inBound(origLocRow, origLocCol)) {
-			if(!Board.isBlack(origLocRow, origLocCol)) {				
-				if( Board.isEmpty(newLocRow, newLocCol) && (newLocRow == origLocRow && newLocCol == origLocCol + 1 )) {
+			if(!Board.isBlack(origLocRow, origLocCol)) {		
+				
+				if( Board.isEmpty(newLocRow, newLocCol) && (newLocRow == origLocRow - 1 && newLocCol == origLocCol )) {
 					isFirstMove = false;
 					return true;
 				}
 				
-				if(isFirstMove && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == origLocRow && newLocCol == origLocCol + 2 )) {
+				if(isFirstMove && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == origLocRow - 2 && newLocCol == origLocCol )) {
 					isFirstMove = false;
 					return true;
 				}
 				
-				if(( (newLocRow == origLocRow + 1 && newLocCol == origLocCol + 1 ) || (newLocRow == origLocRow - 1 && newLocCol == origLocCol + 1 ) ) && !Board.isEmpty(newLocRow, newLocCol)) {
+				if(( (newLocRow == origLocRow - 1 && newLocCol == origLocCol + 1 ) || (newLocRow == origLocRow - 1 && newLocCol == origLocCol - 1 ) ) && !Board.isEmpty(newLocRow, newLocCol)) {
 					if( (Board.isBlack(newLocRow, newLocCol) && !Board.isBlack(origLocRow, origLocCol)) ||  (!Board.isBlack(newLocRow, newLocCol) && Board.isBlack(origLocRow, origLocCol))) {
 						return true;
 					}
 				}
 			}
 			else {				
-				if( Board.isEmpty(newLocRow, newLocCol) && (newLocRow == origLocRow && newLocCol == origLocCol - 1 )) {
+				if( Board.isEmpty(newLocRow, newLocCol) && (newLocRow == origLocRow + 1 && newLocCol == origLocCol )) {
 					isFirstMove = false;
 					return true;
 				}
 				
-				if(isFirstMove && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == origLocRow && newLocCol == origLocCol - 2 )) {
+				if(isFirstMove && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == origLocRow + 2 && newLocCol == origLocCol )) {
 					isFirstMove = false;
 					return true;
 				}
 				
-				if(( (newLocRow == origLocRow + 1 && newLocCol == origLocCol - 1 ) || (newLocRow == origLocRow - 1 && newLocCol == origLocCol - 1 ) ) && !Board.isEmpty(newLocRow, newLocCol)) {
+				if(( (newLocRow == origLocRow + 1 && newLocCol == origLocCol + 1 ) || (newLocRow == origLocRow + 1 && newLocCol == origLocCol - 1 ) ) && !Board.isEmpty(newLocRow, newLocCol)) {
 					if( (Board.isBlack(newLocRow, newLocCol) && !Board.isBlack(origLocRow, origLocCol)) ||  (!Board.isBlack(newLocRow, newLocCol) && Board.isBlack(origLocRow, origLocCol))) {
 						return true;
 					}
 				}
 			}
 		}
-		
 		
 		return false;
 	}
@@ -65,26 +65,5 @@ public class Pawn extends Piece {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-//	
-//	public static void main(String[] args) {
-//		Piece test = new Pawn("wp", "black");
-//		
-//		Board.boardInit();
-//		
-//		
-//		String s = "b7 e4";
-//		
-//		s.trim();
-//		int y = s.charAt(0) - 97;
-//		int x = Character.getNumericValue(s.charAt(1)) - 1;
-//		
-//		System.out.print(y + " " + x);
-//		
-//		//System.out.print(Board.getPieceName(0,1));
-//	
-//		
-//
-//	}
 
 }

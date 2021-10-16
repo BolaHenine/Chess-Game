@@ -1,8 +1,10 @@
 package main;
 import Pieces.Pawn;
+import Pieces.Bishop;
 import Pieces.King;
 import Pieces.Knight;
 import Pieces.Piece;
+import Pieces.Queen;
 import Pieces.Rook;
 
 public class Board {
@@ -38,22 +40,34 @@ public class Board {
 	
 	
 	public static void boardInit() {
-//		board[4][1] = new Pawn("wp" , "black");
-//		board[1][0] = new Knight("wN", "white" );
-//		board[0][2] = new Knight("wN","black");
-//		board[5][2] = new King("bK", "black");
-		board[4][2] = new King("wK", "white");
+		for(int i = 0; i < 8; i++) { 
+			Piece pawn = new Pawn("bp", "black");
+			board[1][i] = pawn;
+		}
+		board[0][0] = new Rook("bR", "black");
+		board[0][1] = new Knight("bN", "black");
+//		board[0][2] = new Bishop("bB", "black");
+		board[0][3] = new Queen("bQ", "black");
+		board[0][4] = new King("bK", "black");
+//		board[0][5] = new Bishop("bB", "black");
+		board[0][6] = new Knight("bN", "black");
+		board[0][7] = new Rook("bR", "black");
+		
+		for(int i = 0; i < 8; i++) { 
+			Piece pawn = new Pawn("wp", "white");
+			board[6][i] = pawn;
+		}
 		
 		board[7][0] = new Rook("wR", "white");
-		board[4][0] = new Rook("wR", "white");
-		board[7][3] = new Knight("wN", "white");
+		board[7][1] = new Knight("wN", "white");
+//		board[7][2] = new Bishop("wB", "white");
+		board[7][3] = new Queen("wQ", "white");
+		board[7][4] = new King("wK", "white");
+//		board[7][5] = new Bishop("wB", "white");
+		board[7][6] = new Knight("wN", "white");
+		board[7][7] = new Rook("wR", "white");
 		
-		board[1][6] = new Rook("bR", "black");
-		board[3][5] = new Rook("bR", "black");
-		board[2][3] = new Rook("bR", "black");
-		board[7][1] = new Rook("bR", "black");
-		board[5][0] = new Rook("bR", "black");
-		board[2][2] = new Rook("bR", "black");
+		
 	}
 	
 	
