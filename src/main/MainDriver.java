@@ -38,13 +38,10 @@ public class MainDriver {
 				whiteTurn = !whiteTurn;
 			}
 		}
+//		
 		
 		
-		
-		
-		 
-		
-		
+
 		
 //		System.out.println(Board.isLegalMove(move, whiteTurn));
 //		s
@@ -89,3 +86,5 @@ public class MainDriver {
 
 // for islegal we send the correct color.
 // for checkmate and check we send the opposite color.
+
+//to check for white check use isCheck(!white)

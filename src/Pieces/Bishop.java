@@ -11,6 +11,7 @@ public class Bishop extends Piece{
 	
 	@Override
 	public boolean isLegalMove(String move) {
+		
 		move = move.replaceAll("\\s", "");
 		int origLocRow = 8 - Character.getNumericValue(move.charAt(1));
 		int origLocCol = Character.getNumericValue(move.charAt(0)) - 10;
