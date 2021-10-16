@@ -4,6 +4,8 @@ import Pieces.King;
 import Pieces.Knight;
 import Pieces.Piece;
 import Pieces.Rook;
+import Pieces.Bishop;
+import Pieces.Queen;
 
 public class Board {
 	
@@ -38,15 +40,17 @@ public class Board {
 	
 	
 	public static void boardInit() {
-//		board[4][1] = new Pawn("wp" , "black");
-//		board[1][0] = new Knight("wN", "white" );
-//		board[0][2] = new Knight("wN","black");
+		board[6][2] = new Pawn("bp" , "black");
+		board[1][0] = new Knight("wN", "white" );
+		board[0][2] = new Knight("wN","white");
 		board[5][2] = new King("bK", "black");
 		board[3][2] = new King("wK", "white");
+		board[1][4] = new Pawn("wp","white");
 		
 		board[7][0] = new Rook("wR", "white");
 		board[4][0] = new Rook("wR", "white");
 		board[7][3] = new Knight("wN", "white");
+		board[2][6] = new Queen("bQ", "black");
 		
 		board[1][6] = new Rook("bR", "black");
 		board[3][5] = new Rook("bR", "black");
@@ -95,6 +99,7 @@ public class Board {
 		
 		
 		if( Board.isEmpty(origLocRow, origLocCol)  ||  Board.isBlack(origLocRow, origLocCol) == whiteTurn) {
+		
 			return false;
 		}
 		else if(!Board.isEmpty(newLocRow, newLocCol) && Board.isBlack(newLocRow, newLocCol) != whiteTurn)
@@ -102,13 +107,14 @@ public class Board {
 			return false;
 		}
 		else {
+			
 			return board[origLocRow][origLocCol].isLegalMove(move);
+			
 		}
 		
 		
 		
 	}
-	
 	
 	public static Piece[][] move(String move){
 		move = move.replaceAll("\\s", "");
@@ -117,6 +123,83 @@ public class Board {
 		int newLocRow = 8 - Character.getNumericValue(move.charAt(3));
 		int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
 		
+		if(move.length()>4)
+		{
+		
+			char promPiece = move.charAt(4);
+			
+			if(Board.getPieceName(origLocRow, origLocCol) == "wp" && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == 0 && newLocCol == origLocCol)) {
+				if (promPiece == 'N')
+				{
+					board[newLocRow][newLocCol] = new Knight("wN", "white");
+					board[origLocRow][origLocCol] = null;
+					return board;
+				}
+				if (promPiece == 'B')
+				{
+					board[newLocRow][newLocCol] = new Bishop("wB", "white");
+					board[origLocRow][origLocCol] = null;
+					return board;
+				}
+				if (promPiece == 'R')
+				{
+					board[newLocRow][newLocCol] = new Rook("wR", "white");
+					board[origLocRow][origLocCol] = null;
+					return board;
+				}
+				if (promPiece == 'Q')
+				{
+					board[newLocRow][newLocCol] = new Queen("wQ", "white");
+					board[origLocRow][origLocCol] = null;
+					return board;
+				}
+				
+			}
+			else if (Board.getPieceName(origLocRow, origLocCol) == "bp" && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == 7 && origLocCol == newLocCol))
+			{
+				
+				if (promPiece == 'N')
+				{
+					
+					board[newLocRow][newLocCol] = new Knight("bN","black");
+					board[origLocRow][origLocCol] = null;
+					return board;
+				}
+				if (promPiece == 'B')
+				{
+					board[newLocRow][newLocCol] = new Bishop("bB", "black");
+					board[origLocRow][origLocCol] = null;
+					return board;
+				}
+				if (promPiece == 'R')
+				{
+					board[newLocRow][newLocCol] = new Rook("bR", "black");
+					board[origLocRow][origLocCol] = null;
+					return board;
+				}
+				if (promPiece == 'Q')
+				{
+					board[newLocRow][newLocCol] = new Queen("bQ", "black");
+					board[origLocRow][origLocCol] = null;
+					return board;
+				}
+				
+			}
+		}
+		if(Board.getPieceName(origLocRow, origLocCol) == "bp" && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == 7 && origLocCol == newLocCol))
+		{
+			board[newLocRow][newLocCol] = new Queen("bQ", "black");
+			board[origLocRow][origLocCol] = null;
+			
+			return board;
+		}
+		else if (Board.getPieceName(origLocRow, origLocCol) == "wp" && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == 0 && newLocCol == origLocCol))
+		{
+			board[newLocRow][newLocCol] = new Queen("wQ", "white");
+			board[origLocRow][origLocCol] = null;
+			
+			return board;
+		}
 		board[newLocRow][newLocCol] = board[origLocRow][origLocCol];
 		
 		board[origLocRow][origLocCol] = null;
@@ -170,6 +253,7 @@ public class Board {
 		System.out.println();
 		System.out.println();
 	}
+	
 	
 	
 	public static boolean isCheck(boolean whiteTurn) {

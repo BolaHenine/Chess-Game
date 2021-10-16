@@ -6,8 +6,8 @@ public class MainDriver {
 
 	public static void main(String[] args) {
 
-		boolean whiteTurn = true;
-		String s = "a1 c3";
+		boolean whiteTurn = false;
+		String s = "g6 g8";
 		s = s.replaceAll("\\s", "");
 		int origLocRow = 8 - Character.getNumericValue(s.charAt(1));
 		int origLocCol = Character.getNumericValue(s.charAt(0)) - 10;
@@ -24,7 +24,7 @@ public class MainDriver {
 		}
 		
 		Board.boardInit();
-		System.out.println(Board.isLegalMove(s, !whiteTurn));
+		System.out.println(Board.isLegalMove(s, whiteTurn));
 //		
 //		
 //		System.out.println(Board.getPieceName(0, 2));
@@ -39,8 +39,10 @@ public class MainDriver {
 		
 	
 		Board.printBoard();
-		System.out.println("Black King Check: " + Board.isCheck(whiteTurn));
-		System.out.println("White King Check: " + Board.isCheck(!whiteTurn));
+		Board.move(s);
+		Board.printBoard();
+//		System.out.println("Black King Check: " + Board.isCheck(whiteTurn));
+//		System.out.println("White King Check: " + Board.isCheck(!whiteTurn));
 //		Board.isCheck(whiteTurn);
 		
 		

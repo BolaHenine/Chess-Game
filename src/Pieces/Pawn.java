@@ -1,6 +1,7 @@
 package Pieces;
 import Pieces.Piece;
 import main.Board;
+import Pieces.Knight;
 
 public class Pawn extends Piece {
 	
@@ -18,6 +19,7 @@ public class Pawn extends Piece {
 		int origLocCol = Character.getNumericValue(move.charAt(0)) - 10;
 		int newLocRow = 8 - Character.getNumericValue(move.charAt(3));
 		int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
+	
 		
 		if(Board.inBound(newLocRow, newLocCol) && Board.inBound(origLocRow, origLocCol)) {
 			if(!Board.isBlack(origLocRow, origLocCol)) {				
@@ -65,6 +67,7 @@ public class Pawn extends Piece {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	
 //	
 //	public static void main(String[] args) {
