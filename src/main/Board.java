@@ -148,7 +148,6 @@ public class Board {
 		{
 		
 			char promPiece = move.charAt(4);
-			
 			if(Board.getPieceName(origLocRow, origLocCol) == "wp" && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == 0 && newLocCol == origLocCol)) {
 				if (promPiece == 'N')
 				{
@@ -206,6 +205,8 @@ public class Board {
 				}
 				
 			}
+			
+		
 		}
 		if(Board.getPieceName(origLocRow, origLocCol) == "bp" && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == 7 && origLocCol == newLocCol))
 		{

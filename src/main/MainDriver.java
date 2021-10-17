@@ -15,14 +15,19 @@ public class MainDriver {
 		String move = "";
 		Boolean whiteWon = false;
 		Boolean blackWon = false;
+		String draw="draw";
 		while(whiteWon != true || blackWon != true) {
 			if(whiteTurn) {
+				
 				System.out.println("White Turn: ");
 				move = sc.nextLine();
+				if(move.length() == 5 || move.length() == 7)
+				{
 				while(!Board.isLegalMove(move, whiteTurn)) {
-					System.out.println("Illegal Move, Enter another move: ");
+					System.out.println("Illegal Move, try again");
 					move = sc.nextLine();
 				}
+	
 				Board.move(move);
 				Board.printBoard();
 				if(Board.isCheck(!whiteTurn)) {
@@ -35,13 +40,33 @@ public class MainDriver {
 					break;
 				}
 				whiteTurn = !whiteTurn;
+				}
+				else if (move.length()==11 && move.contains("draw?") && move.indexOf("draw?") == 6)
+				{
+					System.out.print(draw);
+					break;
+				}
+				else if (move.length()==6 && move.contains("resign"))
+				{
+					System.out.print("Black wins");
+					blackWon=true;
+					break;
+				}
 				
 			}
 			else {
+		
 				System.out.print("Black Turn: ");
 				move = sc.nextLine();
+				if(move.length() == 5 || move.length() == 7)
+				{
+				if (move.substring(4) == draw)
+				{
+					System.out.println("draw");
+					break;
+				}
 				while(!Board.isLegalMove(move, whiteTurn)) {
-					System.out.println("Illegal Move, Enter another move: ");
+					System.out.println("Illegal Move, try again");
 					move = sc.nextLine();
 				}
 				Board.move(move);
@@ -58,7 +83,20 @@ public class MainDriver {
 				}
 				
 				whiteTurn = !whiteTurn;
+				}
+				else if (move.length()==11 && move.contains("draw?") && move.indexOf("draw?") == 6)
+				{
+					System.out.print(draw);
+					break;
+				}
+				else if (move.length()==6 && move.contains("resign"))
+				{
+					System.out.print("Black wins");
+					whiteWon=true;
+				break;
+				}
 			}
+			
 		}
 //		
 		
