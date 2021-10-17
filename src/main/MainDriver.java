@@ -16,7 +16,16 @@ public class MainDriver {
 		Boolean whiteWon = false;
 		Boolean blackWon = false;
 		String draw="draw";
+		
 		while(whiteWon != true || blackWon != true) {
+			if(whiteWon == true) {
+				System.out.print("White wins");
+				break;
+			}
+			if(blackWon == true) {
+				System.out.print("Black wins");
+				break;
+			}
 			if(whiteTurn) {
 				
 				System.out.println("White Turn: ");
@@ -32,25 +41,26 @@ public class MainDriver {
 				Board.printBoard();
 				if(Board.isCheck(!whiteTurn)) {
 					if(Board.isCheckMate(!whiteTurn)) {
+						System.out.println("Checkmate");
 						whiteWon = true;
 					}
 				}
-				if(whiteWon == true) {
-					System.out.print("White Won");
-					break;
-				}
+	
 				whiteTurn = !whiteTurn;
 				}
 				else if (move.length()==11 && move.contains("draw?") && move.indexOf("draw?") == 6)
 				{
-					System.out.print(draw);
+					whiteTurn = false;
+				
+				}
+				else if(whiteTurn = false && move.contains("draw"))
+				{
 					break;
 				}
 				else if (move.length()==6 && move.contains("resign"))
 				{
-					System.out.print("Black wins");
 					blackWon=true;
-					break;
+				
 				}
 				
 			}
@@ -74,26 +84,26 @@ public class MainDriver {
 				
 				if(Board.isCheck(!whiteTurn)) {
 					if(Board.isCheckMate(!whiteTurn)) {
+						System.out.println("Checkmate");
 						blackWon = true;
 					}
-				}
-				if(blackWon == true) {
-					System.out.print("Black Won");
-					break;
 				}
 				
 				whiteTurn = !whiteTurn;
 				}
 				else if (move.length()==11 && move.contains("draw?") && move.indexOf("draw?") == 6)
 				{
-					System.out.print(draw);
+					whiteTurn=true;
+					
+				}
+				else if(whiteTurn = true && move.contains("draw"))
+				{
 					break;
 				}
 				else if (move.length()==6 && move.contains("resign"))
 				{
-					System.out.print("Black wins");
 					whiteWon=true;
-				break;
+				
 				}
 			}
 			
