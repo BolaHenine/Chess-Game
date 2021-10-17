@@ -13,7 +13,9 @@ public class MainDriver {
 		boolean whiteTurn = true;
 		Scanner sc = new Scanner(System.in);
 		String move = "";
-		while(!Board.isCheckMate(!whiteTurn) == true || !Board.isCheckMate(whiteTurn)==true) {
+		Boolean whiteWon = false;
+		Boolean blackWon = false;
+		while(whiteWon != true || blackWon != true) {
 			if(whiteTurn) {
 				System.out.println("White Turn: ");
 				move = sc.nextLine();
@@ -23,6 +25,15 @@ public class MainDriver {
 				}
 				Board.move(move);
 				Board.printBoard();
+				if(Board.isCheck(!whiteTurn)) {
+					if(Board.isCheckMate(!whiteTurn)) {
+						whiteWon = true;
+					}
+				}
+				if(whiteWon == true) {
+					System.out.print("White Won");
+					break;
+				}
 				whiteTurn = !whiteTurn;
 				
 			}
@@ -35,6 +46,17 @@ public class MainDriver {
 				}
 				Board.move(move);
 				Board.printBoard();
+				
+				if(Board.isCheck(!whiteTurn)) {
+					if(Board.isCheckMate(!whiteTurn)) {
+						blackWon = true;
+					}
+				}
+				if(blackWon == true) {
+					System.out.print("Black Won");
+					break;
+				}
+				
 				whiteTurn = !whiteTurn;
 			}
 		}
@@ -42,7 +64,7 @@ public class MainDriver {
 		
 		
 
-		
+		//while(!Board.isCheckMate(!whiteTurn) == true || !Board.isCheckMate(whiteTurn)==true) {
 //		System.out.println(Board.isLegalMove(move, whiteTurn));
 //		s
 //		
