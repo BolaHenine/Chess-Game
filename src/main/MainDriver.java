@@ -15,29 +15,43 @@ public class MainDriver {
 		String move = "";
 		Boolean whiteWon = false;
 		Boolean blackWon = false;
+		Boolean whiteDraw = false;
+		Boolean blackDraw = false;
 		String draw="draw";
 		
 		while(whiteWon != true || blackWon != true) {
 			if(whiteWon == true) {
+				System.out.print("\n");
 				System.out.print("White wins");
 				break;
 			}
 			if(blackWon == true) {
+				System.out.print("\n");
 				System.out.print("Black wins");
 				break;
 			}
+			if(whiteDraw == true) {
+				whiteTurn=false;
+			}
+			if(blackDraw == true) {
+				whiteTurn=true;
+			}
 			if(whiteTurn) {
 				
-				System.out.println("White Turn: ");
+				System.out.print("White Turn: ");
 				move = sc.nextLine();
 				if(move.length() == 5 || move.length() == 7)
 				{
+					
 				while(!Board.isLegalMove(move, whiteTurn)) {
+					System.out.print("\n");
 					System.out.println("Illegal Move, try again");
+					System.out.print("White Turn: ");
 					move = sc.nextLine();
 				}
 	
 				Board.move(move);
+				System.out.print("\n");
 				Board.printBoard();
 				if(Board.isCheck(!whiteTurn)) {
 					if(Board.isCheckMate(!whiteTurn)) {
@@ -50,11 +64,14 @@ public class MainDriver {
 				}
 				else if (move.length()==11 && move.contains("draw?") && move.indexOf("draw?") == 6)
 				{
-					whiteTurn = false;
-				
+					System.out.print("\n");
+					whiteDraw=true;
+			
 				}
-				else if(whiteTurn = false && move.contains("draw"))
+				else if(whiteDraw= true && move.contains(draw))
 				{
+					System.out.print("\n");
+					System.out.print(draw);
 					break;
 				}
 				else if (move.length()==6 && move.contains("resign"))
@@ -70,16 +87,14 @@ public class MainDriver {
 				move = sc.nextLine();
 				if(move.length() == 5 || move.length() == 7)
 				{
-				if (move.substring(4) == draw)
-				{
-					System.out.println("draw");
-					break;
-				}
 				while(!Board.isLegalMove(move, whiteTurn)) {
+					System.out.print("\n");
 					System.out.println("Illegal Move, try again");
+					System.out.print("Black Turn: ");
 					move = sc.nextLine();
 				}
 				Board.move(move);
+				System.out.print("\n");
 				Board.printBoard();
 				
 				if(Board.isCheck(!whiteTurn)) {
@@ -93,13 +108,17 @@ public class MainDriver {
 				}
 				else if (move.length()==11 && move.contains("draw?") && move.indexOf("draw?") == 6)
 				{
-					whiteTurn=true;
-					
+					System.out.print("\n");
+					blackDraw=true;
+				
 				}
-				else if(whiteTurn = true && move.contains("draw"))
+				else if(blackDraw = true && move.contains(draw))
 				{
+					System.out.print("\n");
+					System.out.print(draw);
 					break;
 				}
+				
 				else if (move.length()==6 && move.contains("resign"))
 				{
 					whiteWon=true;
