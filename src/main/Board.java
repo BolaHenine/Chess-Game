@@ -27,7 +27,15 @@ public class Board {
 		}
 	}
 	
+	public static Piece getPiece(int row, int col)
+	{
+		return board[row][col];
+	}
 	
+	public static void setIndexNull(int row, int col)
+	{
+		board[row][col] = null;
+	}
 	
 	public static boolean isEmpty(int row, int col) {
 		if(board[row][col] == null) {
@@ -143,11 +151,22 @@ public class Board {
 		int origLocCol = Character.getNumericValue(move.charAt(0)) - 10;
 		int newLocRow = 8 - Character.getNumericValue(move.charAt(3));
 		int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
+		boolean isFirstMove;
+		if(Board.isEmpty(newLocRow, newLocCol) && (newLocRow == origLocRow - 2 && newLocCol == origLocCol ))
+		{
+			isFirstMove=true;
+		}
+		else
+		{
+			isFirstMove=false;
+		}
 		
 		if(move.length()>4)
 		{
 		
 			char promPiece = move.charAt(4);
+		
+			
 			if(Board.getPieceName(origLocRow, origLocCol) == "wp" && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == 0 && newLocCol == origLocCol)) {
 				if (promPiece == 'N')
 				{
@@ -206,6 +225,16 @@ public class Board {
 				
 			}
 			
+		}
+		if(Board.getPieceName(origLocRow, origLocCol) == "bp" && newLocRow==4)
+		{
+			if(isFirstMove == true && Board.getPieceName(newLocRow, origLocCol-1) == "wp")
+			{
+				board[newLocRow][newLocCol] = new Queen("bQ", "black");
+				board[origLocRow][origLocCol] = null;
+				
+				return board;
+			}
 		
 		}
 		if(Board.getPieceName(origLocRow, origLocCol) == "bp" && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == 7 && origLocCol == newLocCol))
@@ -215,6 +244,7 @@ public class Board {
 			
 			return board;
 		}
+		
 		else if (Board.getPieceName(origLocRow, origLocCol) == "wp" && Board.isEmpty(newLocRow, newLocCol) && (newLocRow == 0 && newLocCol == origLocCol))
 		{
 			board[newLocRow][newLocCol] = new Queen("wQ", "white");
@@ -454,7 +484,9 @@ public class Board {
 		return true;
 	}
 	
+
 }
+
 
 
 

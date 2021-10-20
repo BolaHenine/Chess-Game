@@ -51,6 +51,7 @@ public class MainDriver {
 				}
 	
 				Board.move(move);
+				
 				System.out.print("\n");
 				Board.printBoard();
 				if(Board.isCheck(!whiteTurn)) {
@@ -128,7 +129,6 @@ public class MainDriver {
 			
 		}
 //		
-		
 		
 
 		//while(!Board.isCheckMate(!whiteTurn) == true || !Board.isCheckMate(whiteTurn)==true) {
