@@ -91,7 +91,14 @@ public class Pawn extends Piece {
 	int origLocCol = Character.getNumericValue(move.charAt(0)) - 10;
 	int newLocRow = 8 - Character.getNumericValue(move.charAt(3));
 	int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
-	// Pawn pawn = (Pawn)Board.getPiece(newLocRow, newLocCol)
+	int prevMoveRow = Board.getPrevMove()[0];
+	int prevMoveCol = Board.getPrevMove()[1];
+
+	if (prevMoveCol != newLocCol && ((prevMoveRow != newLocRow + 1) || (prevMoveRow != newLocRow - 1))) {
+	    return false;
+
+	}
+
 	if (!Board.isBlack(origLocRow, origLocCol) && origLocRow == 3 && newLocRow == origLocRow - 1
 		&& (newLocCol == origLocCol - 1 || newLocCol == origLocCol + 1)) {
 

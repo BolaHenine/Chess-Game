@@ -11,6 +11,7 @@ import Pieces.Rook;
 public class Board {
 
     public static Piece[][] board = new Piece[8][8];
+    private static int[] prevMove = new int[2];
 
     public static boolean inBound(int row, int col) {
 
@@ -111,9 +112,7 @@ public class Board {
 	} else if (!Board.inBound(newLocRow, newLocCol)) {
 	    return false;
 	} else {
-
 	    return board[origLocRow][origLocCol].isLegalMove(move);
-
 	}
 
     }
@@ -130,6 +129,8 @@ public class Board {
 	} else {
 	    isFirstMove = false;
 	}
+
+	Board.prevMove(newLocRow, newLocCol);
 
 	if (move.length() > 4) {
 
@@ -423,6 +424,16 @@ public class Board {
 	}
 
 	return true;
+    }
+
+    public static void prevMove(int row, int col) {
+	prevMove[0] = row;
+	prevMove[1] = col;
+
+    }
+
+    public static int[] getPrevMove() {
+	return prevMove;
     }
 
 }

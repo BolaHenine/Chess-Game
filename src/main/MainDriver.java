@@ -47,7 +47,6 @@ public class MainDriver {
 		    }
 
 		    Board.move(move);
-
 		    System.out.print("\n");
 		    Board.printBoard();
 		    if (Board.isCheck(!whiteTurn)) {
