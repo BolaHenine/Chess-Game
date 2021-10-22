@@ -18,6 +18,14 @@ public class Pawn extends Piece {
     private boolean isFirstMove = true;
     private boolean doubleMove = false;
 
+    /**
+     * Default constructor that calls the superclass Piece's constructor
+     * <p>
+     *
+     * @param pieceName the name of the piece in the form of first initial of color
+     *                  and first initial of piece name
+     * @param color     the color of the piece, either white or black
+     */
     public Pawn(String pieceName, String color) {
 	super(pieceName, color);
 	// TODO Auto-generated constructor stub

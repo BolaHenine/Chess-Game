@@ -14,7 +14,14 @@ import main.Board;
  * the legal moves that the King can make within the squares of the board.
  */
 public class King extends Piece {
-
+    /**
+     * Default constructor that calls the superclass Piece's constructor
+     * <p>
+     *
+     * @param pieceName the name of the piece in the form of first initial of color
+     *                  and first initial of piece name
+     * @param color     the color of the piece, either white or black
+     */
     private boolean didMove = false;
 
     public King(String pieceName, String color) {
