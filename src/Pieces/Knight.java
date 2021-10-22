@@ -9,20 +9,17 @@ package Pieces;
 import main.Board;
 
 /**
- * 
+ *
  * Knight is the subclass that extends the superclass Piece. This subclass
  * creates the legal moves that the Knight can make within the squares of the
  * board.
- * 
- * @author Roshan Seth
- * @author Bola Henine
  */
 public class Knight extends Piece {
 
     /**
      * Default constructor that calls the superclass Piece's constructor
      * <p>
-     * 
+     *
      * @param pieceName the name of the piece in the form of first initial of color
      *                  and first initial of piece name
      * @param color     the color of the piece, either white or black
@@ -44,7 +41,7 @@ public class Knight extends Piece {
      * <p>
      * If the move the Knight makes is not legal then the output after the move is
      * made would be a string that says illegal move, try again:
-     * 
+     *
      * @param move the move the Knight makes inputed by the user
      * @return <code>true</code> if the move the Knight makes is legal;
      *         <code>false</code> if the move is not legal
@@ -118,12 +115,6 @@ public class Knight extends Piece {
 	    }
 	}
 
-	return false;
-    }
-
-    @Override
-    public boolean isCheck(String move) {
-	// TODO Auto-generated method stub
 	return false;
     }
 

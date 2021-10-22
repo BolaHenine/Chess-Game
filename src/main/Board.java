@@ -285,8 +285,8 @@ public class Board {
 	boolean switchPrint = true;
 
 	for (int i = 0; i < 8; i++) {
-	    for (int j = 0; j < 8; j++) { // loop through the array column
-		if (board[i][j] != null) { // if game piece exists at index, print it
+	    for (int j = 0; j < 8; j++) {
+		if (board[i][j] != null) {
 		    System.out.print(board[i][j].getName());
 		} else if (switchPrint) {
 		    if (i % 2 != 0) {
@@ -294,7 +294,7 @@ public class Board {
 		    } else {
 			System.out.print("  ");
 		    }
-		} else { // print black spaces
+		} else {
 		    if (i % 2 == 0) {
 			System.out.print("##");
 		    } else {
@@ -302,16 +302,16 @@ public class Board {
 		    }
 		}
 		System.out.print(" ");
-		switchPrint = !switchPrint; // change print scheme for every other row
+		switchPrint = !switchPrint;
 	    }
-	    System.out.print(rowCount); // print out row number at the end of each row
+	    System.out.print(rowCount);
 	    rowCount--;
 	    System.out.println();
 	}
 
 	System.out.print(" a");
 
-	for (char i = 'b'; i < 105; i++) { // print the column letter at the bottom of each column
+	for (char i = 'b'; i < 105; i++) {
 
 	    System.out.print("  " + i);
 

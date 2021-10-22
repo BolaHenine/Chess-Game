@@ -8,6 +8,12 @@ package Pieces;
 
 import main.Board;
 
+/**
+ *
+ * Rook is the subclass that extends the superclass Piece. This subclass creates
+ * the legal moves that the Rook can make within the squares of the board.
+ */
+
 public class Rook extends Piece {
 
     private boolean didMove = false;
@@ -75,12 +81,6 @@ public class Rook extends Piece {
 
     public boolean didMove() {
 	return didMove;
-    }
-
-    @Override
-    public boolean isCheck(String move) {
-	// TODO Auto-generated method stub
-	return false;
     }
 
 }

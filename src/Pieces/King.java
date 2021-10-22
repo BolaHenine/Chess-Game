@@ -8,6 +8,11 @@ package Pieces;
 
 import main.Board;
 
+/**
+ *
+ * King is the subclass that extends the superclass Piece. This subclass creates
+ * the legal moves that the King can make within the squares of the board.
+ */
 public class King extends Piece {
 
     private boolean didMove = false;
@@ -174,12 +179,6 @@ public class King extends Piece {
 	    }
 	}
 
-	return false;
-    }
-
-    @Override
-    public boolean isCheck(String move) {
-	// TODO Auto-generated method stub
 	return false;
     }
 

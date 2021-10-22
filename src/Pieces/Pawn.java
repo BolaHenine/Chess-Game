@@ -8,6 +8,12 @@ package Pieces;
 
 import main.Board;
 
+/**
+ *
+ * Pawn is the subclass that extends the superclass Piece. This subclass creates
+ * the legal moves that the Pawn can make within the squares of the board.
+ */
+
 public class Pawn extends Piece {
     private boolean isFirstMove = true;
     private boolean doubleMove = false;
@@ -171,12 +177,6 @@ public class Pawn extends Piece {
 	}
 	return false;
 
-    }
-
-    @Override
-    public boolean isCheck(String move) {
-	// TODO Auto-generated method stub
-	return false;
     }
 
 }

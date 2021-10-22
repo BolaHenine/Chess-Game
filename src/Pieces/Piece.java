@@ -39,6 +39,4 @@ public abstract class Piece {
 
     public abstract boolean isLegalMove(String move);
 
-    public abstract boolean isCheck(String move);
-
 }
