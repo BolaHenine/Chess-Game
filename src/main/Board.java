@@ -3,6 +3,7 @@ package main;
 import Pieces.Bishop;
 import Pieces.King;
 import Pieces.Knight;
+import Pieces.Pawn;
 import Pieces.Piece;
 import Pieces.Queen;
 import Pieces.Rook;
@@ -39,37 +40,33 @@ public class Board {
     }
 
     public static void boardInit() {
-//	for (int i = 0; i < 8; i++) {
-//	    Piece pawn = new Pawn("bp", "black");
-//	    board[1][i] = pawn;
-//	}
-//
-//	board[0][0] = new Rook("bR", "black");
-//	board[0][1] = new Knight("bN", "black");
-//	board[0][2] = new Bishop("bB", "black");
-//	board[0][3] = new Queen("bQ", "black");
-//	board[0][4] = new King("bK", "black");
-//	board[0][5] = new Bishop("bB", "black");
-//	board[0][6] = new Knight("bN", "black");
-//	board[0][7] = new Rook("bR", "black");
-//
-//	for (int i = 0; i < 8; i++) {
-//	    Piece pawn = new Pawn("wp", "white");
-//	    board[6][i] = pawn;
-//	}
-//
-//	board[7][0] = new Rook("wR", "white");
-//	board[7][1] = new Knight("wN", "white");
-//	board[7][2] = new Bishop("wB", "white");
-//	board[7][3] = new Queen("wQ", "white");
-//	board[7][4] = new King("wK", "white");
-//	board[7][5] = new Bishop("wB", "white");
-//	board[7][6] = new Knight("wN", "white");
-//	board[7][7] = new Rook("wR", "white");
+	for (int i = 0; i < 8; i++) {
+	    Piece pawn = new Pawn("bp", "black");
+	    board[1][i] = pawn;
+	}
 
-	board[7][7] = new King("wK", "white");
-	board[7][6] = new Rook("wR", "white");
-	board[7][2] = new Queen("wQ", "white");
+	board[0][0] = new Rook("bR", "black");
+	board[0][1] = new Knight("bN", "black");
+	board[0][2] = new Bishop("bB", "black");
+	board[0][3] = new Queen("bQ", "black");
+	board[0][4] = new King("bK", "black");
+	board[0][5] = new Bishop("bB", "black");
+	board[0][6] = new Knight("bN", "black");
+	board[0][7] = new Rook("bR", "black");
+
+	for (int i = 0; i < 8; i++) {
+	    Piece pawn = new Pawn("wp", "white");
+	    board[6][i] = pawn;
+	}
+
+	board[7][0] = new Rook("wR", "white");
+	board[7][1] = new Knight("wN", "white");
+	board[7][2] = new Bishop("wB", "white");
+	board[7][3] = new Queen("wQ", "white");
+	board[7][4] = new King("wK", "white");
+	board[7][5] = new Bishop("wB", "white");
+	board[7][6] = new Knight("wN", "white");
+	board[7][7] = new Rook("wR", "white");
 
     }
 
@@ -222,7 +219,6 @@ public class Board {
     }
 
     public static void printBoard() {
-
 	int rowCount = 8;
 
 	boolean switchPrint = true;
@@ -269,25 +265,41 @@ public class Board {
 	int kingRow = 0;
 	String move = "";
 
-	for (int i = 0; i < 8; i++) {
-	    for (int j = 0; j < 8; j++) {
-		if (Board.getPieceName(i, j) != null) {
-		    if (Board.getPieceName(i, j).charAt(1) == 'K' && Board.isBlack(i, j) == whiteTurn) {
-			kingRow = 8 - i;
-			kingCol = j;
+	if (whiteTurn) {
+	    for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+		    if (Board.getPieceName(i, j) != null) {
+			if (Board.getPieceName(i, j).equals("bK")) {
+			    kingRow = 7 - i;
+			    kingCol = j;
+			}
 		    }
-		}
 
+		}
+	    }
+	} else {
+	    for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+		    if (Board.getPieceName(i, j) != null) {
+			if (Board.getPieceName(i, j).equals("wK")) {
+			    kingRow = 7 - i;
+			    kingCol = j;
+			}
+		    }
+
+		}
 	    }
 	}
+
 	for (int i = 0; i < 8; i++) {
 	    for (int j = 0; j < 8; j++) {
 
 		if (Board.getPieceName(i, j) != null && Board.isBlack(i, j) != whiteTurn
 			&& Board.getPieceName(i, j).charAt(1) != 'K') {
 
-		    move += ((char) (j + 97)) + "" + (8 - i) + " " + ((char) (kingCol + 97)) + "" + kingRow;
+		    move += ((char) (j + 97)) + "" + (8 - i) + " " + ((char) (kingCol + 97)) + "" + (kingRow + 1);
 		    if (board[i][j].isLegalMove(move)) {
+
 			move = "";
 			return true;
 
@@ -309,17 +321,43 @@ public class Board {
 	int tempRow = 0;
 	Piece temp;
 
-	for (int i = 0; i < 8; i++) {
-	    for (int j = 0; j < 8; j++) {
-		if (Board.getPieceName(i, j) != null) {
-		    if (Board.getPieceName(i, j).charAt(1) == 'K' && Board.isBlack(i, j) == whiteTurn) {
+//	for (int i = 0; i < 8; i++) {
+//	    for (int j = 0; j < 8; j++) {
+//		if (Board.getPieceName(i, j) != null) {
+//		    if (Board.getPieceName(i, j).charAt(1) == 'K' && Board.isBlack(i, j) == whiteTurn) {
+//
+//			kingRow = i;
+//			kingCol = j;
+//
+//		    }
+//		}
+//
+//	    }
+//	}
 
-			kingRow = 8 - i;
-			kingCol = j;
-
+	if (whiteTurn) {
+	    for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+		    if (Board.getPieceName(i, j) != null) {
+			if (Board.getPieceName(i, j).equals("bK")) {
+			    kingRow = 7 - i;
+			    kingCol = j;
+			}
 		    }
-		}
 
+		}
+	    }
+	} else {
+	    for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+		    if (Board.getPieceName(i, j) != null) {
+			if (Board.getPieceName(i, j).equals("wK")) {
+			    kingRow = 7 - i;
+			    kingCol = j;
+			}
+		    }
+
+		}
 	    }
 	}
 
@@ -338,22 +376,25 @@ public class Board {
 
 		tempCol = kingCol + 1;
 		tempRow = kingRow;
-		System.out.println(tempRow - 2 + " " + (tempCol));
-		move = ((char) (kingCol + 97)) + "" + (kingRow) + " " + ((char) (tempCol + 97)) + "" + (tempRow);
-		moveBack = ((char) (tempCol + 97)) + "" + (tempRow) + " " + ((char) (kingCol + 97)) + "" + (kingRow);
+		move = ((char) (kingCol + 97)) + "" + (kingRow + 1) + " " + ((char) (tempCol + 97)) + ""
+			+ (tempRow + 1);
+		moveBack = ((char) (tempCol + 97)) + "" + (tempRow + 1) + " " + ((char) (kingCol + 97)) + ""
+			+ (kingRow + 1);
 		int origLocRow = 8 - Character.getNumericValue(moveBack.charAt(1));
 		int origLocCol = Character.getNumericValue(moveBack.charAt(0)) - 10;
+
 		if (Board.inBound(tempRow, tempCol)) {
+
 		    if (Board.isLegalMove(move, !whiteTurn)) {
 			temp = board[origLocRow][origLocCol];
 			Board.move(move);
 			if (!Board.isCheck(whiteTurn)) {
 			    Board.move(moveBack);
-			    board[tempRow - 2][tempCol] = temp;
+			    board[tempRow][tempCol] = temp;
 			    return false;
 			}
 			Board.move(moveBack);
-			board[tempRow - 2][tempCol] = temp;
+			board[tempRow][tempCol] = temp;
 		    }
 		}
 
@@ -363,22 +404,26 @@ public class Board {
 
 		tempCol = kingCol - 1;
 		tempRow = kingRow;
-		System.out.println(tempRow - 2 + " " + (tempCol));
-		move = ((char) (kingCol + 97)) + "" + (kingRow) + " " + ((char) (tempCol + 97)) + "" + (tempRow);
-		moveBack = ((char) (tempCol + 97)) + "" + (tempRow) + " " + ((char) (kingCol + 97)) + "" + (kingRow);
+
+		move = ((char) (kingCol + 97)) + "" + (kingRow + 1) + " " + ((char) (tempCol + 97)) + ""
+			+ (tempRow + 1);
+		moveBack = ((char) (tempCol + 97)) + "" + (tempRow + 1) + " " + ((char) (kingCol + 97)) + ""
+			+ (kingRow + 1);
 		int origLocRow = 8 - Character.getNumericValue(moveBack.charAt(1));
 		int origLocCol = Character.getNumericValue(moveBack.charAt(0)) - 10;
 		if (Board.inBound(tempRow, tempCol)) {
+
 		    if (Board.isLegalMove(move, !whiteTurn)) {
 			temp = board[origLocRow][origLocCol];
 			Board.move(move);
+
 			if (!Board.isCheck(whiteTurn)) {
 			    Board.move(moveBack);
-			    board[tempRow - 2][tempCol] = temp;
+			    board[tempRow][tempCol] = temp;
 			    return false;
 			}
 			Board.move(moveBack);
-			board[tempRow - 2][tempCol] = temp;
+			board[tempRow][tempCol] = temp;
 		    }
 		}
 
@@ -386,19 +431,17 @@ public class Board {
 
 		tempCol = kingCol;
 		tempRow = kingRow + 1;
-		System.out.println(tempRow + " " + (tempCol) + " asdf");
-		move = ((char) (kingCol + 97)) + "" + (kingRow) + " " + ((char) (tempCol + 97)) + "" + (tempRow);
-		moveBack = ((char) (tempCol + 97)) + "" + (tempRow) + " " + ((char) (kingCol + 97)) + "" + (kingRow);
+		move = ((char) (kingCol + 97)) + "" + (kingRow + 1) + " " + ((char) (tempCol + 97)) + ""
+			+ (tempRow + 1);
+		moveBack = ((char) (tempCol + 97)) + "" + (tempRow + 1) + " " + ((char) (kingCol + 97)) + ""
+			+ (kingRow + 1);
 
 		int origLocRow = 8 - Character.getNumericValue(moveBack.charAt(1));
 		int origLocCol = Character.getNumericValue(moveBack.charAt(0)) - 10;
 
-		System.out.println(origLocRow + " " + " " + origLocCol);
-
 		if (Board.inBound(tempRow, tempCol)) {
 
 		    if (Board.isLegalMove(move, !whiteTurn)) {
-			System.out.print(tempRow);
 			temp = board[origLocRow][origLocCol];
 
 			Board.move(move);
@@ -417,9 +460,10 @@ public class Board {
 	    } else if (i == 3) {
 		tempCol = kingCol;
 		tempRow = kingRow - 1;
-		System.out.println(tempRow + " " + (tempCol) + " asd");
-		move = ((char) (kingCol + 97)) + "" + (kingRow) + " " + ((char) (tempCol + 97)) + "" + (tempRow);
-		moveBack = ((char) (tempCol + 97)) + "" + (tempRow) + " " + ((char) (kingCol + 97)) + "" + (kingRow);
+		move = ((char) (kingCol + 97)) + "" + (kingRow + 1) + " " + ((char) (tempCol + 97)) + ""
+			+ (tempRow + 1);
+		moveBack = ((char) (tempCol + 97)) + "" + (tempRow + 1) + " " + ((char) (kingCol + 97)) + ""
+			+ (kingRow + 1);
 		int origLocRow = 8 - Character.getNumericValue(moveBack.charAt(1));
 		int origLocCol = Character.getNumericValue(moveBack.charAt(0)) - 10;
 		if (Board.inBound(tempRow, tempCol)) {
@@ -427,7 +471,6 @@ public class Board {
 			temp = board[origLocRow][origLocCol];
 			Board.move(move);
 			if (!Board.isCheck(whiteTurn)) {
-			    System.out.print("hello");
 			    Board.move(moveBack);
 			    board[tempRow][tempCol] = temp;
 			    return false;
