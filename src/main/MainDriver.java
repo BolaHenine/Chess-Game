@@ -1,10 +1,11 @@
 package main;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainDriver {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 	Board.boardInit();
 	Board.printBoard();
 	boolean whiteTurn = true;
@@ -110,18 +111,93 @@ public class MainDriver {
 	    }
 
 	}
-//		
+
+//	BufferedReader reader = new BufferedReader(
+//		new FileReader("/Users/bolahenine/eclipse-workspace/Random/Hello1.txt"));
+//	String line;
+//
+//	String line2;
+//	int count = 0;
+//	while (whiteWon != true || blackWon != true || count < 4) {
+//	    if (whiteWon == true) {
+//		System.out.print("\n");
+//		System.out.print("White wins");
+//		break;
+//	    }
+//	    if (blackWon == true) {
+//		System.out.print("\n");
+//		System.out.print("Black wins");
+//		break;
+//	    }
+//	    if (whiteTurn) {
+//
+//		System.out.print("White Turn: ");
+//		line = reader.readLine();
+//		System.out.println(line);
+//		if (line.length() == 5 || line.length() == 7) {
+//
+////		    while (!Board.isLegalMove(line, whiteTurn)) {
+////			System.out.print("\n");
+////			System.out.println("Illegal Move, try again");
+////			System.out.print("White Turn: ");
+////		    }
+//
+//		    Board.move(line);
+//		    System.out.print("\n");
+//		    Board.printBoard();
+//		    if (Board.isCheck(!whiteTurn)) {
+//			System.out.print("asd");
+//			if (Board.isCheckMate(!whiteTurn)) {
+//			    System.out.println("Checkmate");
+//			    whiteWon = true;
+//			}
+//		    }
+////
+//		    whiteTurn = !whiteTurn;
+////
+//		}
+//
+//	    } else {
+//
+//		System.out.print("Black Turn: ");
+//		line2 = reader.readLine();
+//		System.out.println(line2);
+//		if (line2.length() == 5 || line2.length() == 7) {
+////		    while (!Board.isLegalMove(line2, whiteTurn)) {
+////			System.out.print("\n");
+////			System.out.println("Illegal Move, try again");
+////			System.out.print("Black Turn: ");
+////		    }
+//		    Board.move(line2);
+//		    System.out.print("\n");
+//		    Board.printBoard();
+//
+//		    if (Board.isCheck(!whiteTurn)) {
+//			System.out.print("asd");
+//			if (Board.isCheckMate(!whiteTurn)) {
+//			    System.out.println("Checkmate");
+//			    blackWon = true;
+//			}
+//		    }
+//
+//		    whiteTurn = !whiteTurn;
+//		}
+//	    }
+//
+//	}
+//	reader.close();
+//
 
 	// while(!Board.isCheckMate(!whiteTurn) == true ||
 	// !Board.isCheckMate(whiteTurn)==true) {
 //		System.out.println(Board.isLegalMove(move, whiteTurn));
 //		s
-//		
+//
 //		System.out.println(Board.getPieceName(0, 2));
-//		
-//		
+//
+//
 //		System.out.println( origLocRow + " " + origLocCol + " " + newLocRow + " " + newLocCol);
-//	
+//
 
 //		System.out.println(Board.getPieceName(7, 2).charAt(1));
 //		System.out.println(Board.isBlack(7, 2));
@@ -129,12 +205,12 @@ public class MainDriver {
 //		Board.printBoard();
 //		System.out.println("Black King Check: " + Board.isCheck(whiteTurn));
 //		System.out.println("White King Check: " + Board.isCheck(!whiteTurn));
-//		
+//
 //		System.out.println(Board.isCheckMate(!whiteTurn));
 //		System.out.print("c5");
 //		Board.isCheck(whiteTurn);
 
-//		
+//
 //		Board.move(s);
 //
 //		Board.printBoard();
