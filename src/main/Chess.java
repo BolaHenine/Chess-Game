@@ -44,9 +44,7 @@ public class Chess {
 		System.out.print("White Turn: ");
 		move = sc.nextLine();
 		if (move.length() == 5 || move.length() == 7) {
-
 		    while (!Board.isLegalMove(move, whiteTurn)) {
-			System.out.print("\n");
 			System.out.println("Illegal Move, try again");
 			System.out.print("White Turn: ");
 			move = sc.nextLine();
@@ -56,6 +54,7 @@ public class Chess {
 		    System.out.print("\n");
 		    Board.printBoard();
 		    if (Board.isCheck(true)) {
+			System.out.println("Check");
 			if (Board.isCheckMate(true)) {
 			    System.out.println("Checkmate");
 			    whiteWon = true;
@@ -82,7 +81,6 @@ public class Chess {
 		move = sc.nextLine();
 		if (move.length() == 5 || move.length() == 7) {
 		    while (!Board.isLegalMove(move, whiteTurn)) {
-			System.out.print("\n");
 			System.out.println("Illegal Move, try again");
 			System.out.print("Black Turn: ");
 			move = sc.nextLine();
@@ -92,6 +90,7 @@ public class Chess {
 		    Board.printBoard();
 
 		    if (Board.isCheck(false)) {
+			System.out.println("Check");
 			if (Board.isCheckMate(false)) {
 			    System.out.println("Checkmate");
 			    blackWon = true;
