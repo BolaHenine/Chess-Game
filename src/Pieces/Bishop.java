@@ -1,3 +1,9 @@
+/**
+ * @author Bola Henine
+ *
+ * @author Roshan Seth
+ */
+
 package Pieces;
 
 import main.Board;
@@ -55,7 +61,6 @@ public class Bishop extends Piece {
 	int newLocCol = Character.getNumericValue(move.charAt(2)) - 10;
 
 	if (Board.inBound(newLocRow, newLocCol) && Board.inBound(origLocRow, origLocCol)) {
-
 	    if (!Board.isBlack(origLocRow, origLocCol)) {
 
 		if (((newLocCol == origLocCol + 1 && newLocRow == origLocRow + 1)
@@ -65,7 +70,6 @@ public class Bishop extends Piece {
 			|| (newLocCol == origLocCol + 5 && newLocRow == origLocRow + 5)
 			|| (newLocCol == origLocCol + 6 && newLocRow == origLocRow + 6)
 			|| (newLocCol == origLocCol + 7 && newLocRow == origLocRow + 7))) {
-
 		    if (Math.abs(origLocRow - newLocRow) > 1 && Math.abs(origLocCol - newLocCol) > 1) {
 			for (int i = newLocRow - 1, j = newLocCol - 1; i > origLocRow && j > origLocCol; i--, j--) {
 			    if (Board.isEmpty(i, j)) {

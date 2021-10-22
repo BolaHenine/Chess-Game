@@ -1,3 +1,9 @@
+/**
+ * @author Bola Henine
+ *
+ * @author Roshan Seth
+ */
+
 package main;
 
 import Pieces.Bishop;
@@ -13,6 +19,12 @@ public class Board {
     public static Piece[][] board = new Piece[8][8];
     private static int[] prevMove = new int[2];
 
+    /**
+     * @param row the row that will be checked if it is in bound
+     * @param col the column that will be checked if it is in bound
+     * @return return whether the row and column are inside the board
+     */
+
     public static boolean inBound(int row, int col) {
 
 	if ((row >= 0 && row < 8) && (col >= 0 && col < 8)) {
@@ -22,13 +34,30 @@ public class Board {
 	}
     }
 
+    /**
+     * @param row the row of the piece
+     * @param col the column of the piece
+     * @return return the piece at the given row and column
+     */
+
     public static Piece getPiece(int row, int col) {
 	return board[row][col];
     }
 
+    /**
+     * @param row the row that will be set to null
+     * @param col the column that will be set to null
+     */
+
     public static void setIndexNull(int row, int col) {
 	board[row][col] = null;
     }
+
+    /**
+     * @param row the row of the piece
+     * @param col the column of the piece
+     * @return return whether there is a piece at the given row and column
+     */
 
     public static boolean isEmpty(int row, int col) {
 	if (board[row][col] == null) {
@@ -38,6 +67,11 @@ public class Board {
 	}
 
     }
+
+    /**
+     *
+     * initializes the board
+     */
 
     public static void boardInit() {
 	for (int i = 0; i < 8; i++) {
@@ -70,6 +104,12 @@ public class Board {
 
     }
 
+    /**
+     * @param row the row of the piece
+     * @param col the column of the piece
+     * @return return the piece name at the given row and column
+     */
+
     public static String getPieceName(int row, int col) {
 
 	if (!((row >= 0 && row < 8) && (col >= 0 && col < 8))) {
@@ -86,6 +126,12 @@ public class Board {
 	return null;
     }
 
+    /**
+     * @param row the row of the piece
+     * @param col the column of the piece
+     * @return return whether piece at the given row and column is black
+     */
+
     public static boolean isBlack(int row, int col) {
 
 	if (board[row][col].isBlack()) {
@@ -96,6 +142,12 @@ public class Board {
 	}
 
     }
+
+    /**
+     * @param move      the move that is inputed by the user
+     * @param whiteTurn true if it is white turn else false
+     * @return return whether the move is valid or not
+     */
 
     public static boolean isLegalMove(String move, boolean whiteTurn) {
 	move = move.replaceAll("\\s", "");
@@ -116,6 +168,11 @@ public class Board {
 	}
 
     }
+
+    /**
+     * @param move the move that is inputed by the user
+     * @return return the board after the move is made
+     */
 
     public static Piece[][] move(String move) {
 	move = move.replaceAll("\\s", "");
@@ -218,6 +275,10 @@ public class Board {
 	return board;
     }
 
+    /**
+     * Prints the board
+     */
+
     public static void printBoard() {
 	int rowCount = 8;
 
@@ -260,6 +321,10 @@ public class Board {
 	System.out.println();
     }
 
+    /**
+     * @param whiteTurn true if it is white turn else false
+     * @return return whether the board is at check or not
+     */
     public static boolean isCheck(boolean whiteTurn) {
 	int kingCol = 0;
 	int kingRow = 0;
@@ -313,6 +378,11 @@ public class Board {
 	return false;
     }
 
+    /**
+     * @param whiteTurn true if it is white turn else false
+     * @return return whether the board is at CheckMate or not
+     */
+
     public static boolean isCheckMate(boolean whiteTurn) {
 
 	int kingCol = 0;
@@ -320,20 +390,6 @@ public class Board {
 	int tempCol = 0;
 	int tempRow = 0;
 	Piece temp;
-
-//	for (int i = 0; i < 8; i++) {
-//	    for (int j = 0; j < 8; j++) {
-//		if (Board.getPieceName(i, j) != null) {
-//		    if (Board.getPieceName(i, j).charAt(1) == 'K' && Board.isBlack(i, j) == whiteTurn) {
-//
-//			kingRow = i;
-//			kingCol = j;
-//
-//		    }
-//		}
-//
-//	    }
-//	}
 
 	if (whiteTurn) {
 	    for (int i = 0; i < 8; i++) {
@@ -487,23 +543,23 @@ public class Board {
 	return true;
     }
 
+    /**
+     * @param row the row of the last move that was made
+     * @param col the column of the last move that was made
+     */
+
     public static void prevMove(int row, int col) {
 	prevMove[0] = row;
 	prevMove[1] = col;
 
     }
 
+    /**
+     * @return return the previous move that was made
+     */
+
     public static int[] getPrevMove() {
 	return prevMove;
     }
 
 }
-
-//if(whiteTurn) {
-//tempCol = kingCol + 1;
-//tempRow = kingRow + 1;
-//}
-//else {
-//tempCol = kingCol + 1;
-//tempRow = kingRow + 1;
-//}

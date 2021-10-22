@@ -1,3 +1,9 @@
+/**
+ * @author Bola Henine
+ *
+ * @author Roshan Seth
+ */
+
 package Pieces;
 
 import main.Board;
@@ -10,6 +16,11 @@ public class King extends Piece {
 	super(pieceName, color);
 	// TODO Auto-generated constructor stub
     }
+
+    /**
+     * @param move that is inputed by user
+     * @return return true if King is making a legal move
+     */
 
     @Override
     public boolean isLegalMove(String move) {
@@ -24,17 +35,11 @@ public class King extends Piece {
 	}
 
 	if (Board.inBound(newLocRow, newLocCol) && Board.inBound(origLocRow, origLocCol)) {
-	    if ((newLocRow == origLocRow) && ((newLocCol == origLocCol + 1) || (newLocCol == origLocCol - 1))) { // Left
-														 // and
-														 // Right
-														 // movements
+	    if ((newLocRow == origLocRow) && ((newLocCol == origLocCol + 1) || (newLocCol == origLocCol - 1))) {
 		didMove = true;
 		return true;
 	    }
-	    if (((newLocCol == origLocCol) && ((newLocRow == origLocRow - 1) || (newLocRow == origLocRow + 1)))) { // Up
-														   // and
-														   // Down
-														   // Move
+	    if (((newLocCol == origLocCol) && ((newLocRow == origLocRow - 1) || (newLocRow == origLocRow + 1)))) {
 		didMove = true;
 		return true;
 	    }
@@ -50,10 +55,19 @@ public class King extends Piece {
 	return false;
     }
 
+    /**
+     *
+     * @return return true if King moved from it's original location
+     */
+
     public boolean didMove() {
 	return didMove;
     }
 
+    /**
+     * @param move that is inputed by user
+     * @return return true if King is making a castling move
+     */
     public boolean isCastle(String move) {
 	int origLocRow = 8 - Character.getNumericValue(move.charAt(1));
 	int origLocCol = Character.getNumericValue(move.charAt(0)) - 10;
