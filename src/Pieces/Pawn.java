@@ -1,3 +1,9 @@
+/**
+ * @author Bola Henine
+ *
+ * @author Roshan Seth
+ */
+
 package Pieces;
 
 import main.Board;
@@ -11,11 +17,19 @@ public class Pawn extends Piece {
 	// TODO Auto-generated constructor stub
     }
 
+    /**
+     * @return return true if the pawn made a double move at the start
+     */
+
     public boolean isDoubleMove() {
 	return doubleMove;
     }
 
-    // checks if legal move
+    /**
+     * @param move that is inputed by user
+     * @return return true if pawn is making a legal move
+     */
+
     @Override
     public boolean isLegalMove(String move) {
 	move = move.replaceAll("\\s", "");
@@ -84,6 +98,11 @@ public class Pawn extends Piece {
 
 	return false;
     }
+
+    /**
+     * @param move that is inputed by user
+     * @return return true if pawn is making an en passant move
+     */
 
     public boolean enPassant(String move) {
 

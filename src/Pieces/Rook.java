@@ -1,3 +1,9 @@
+/**
+ * @author Bola Henine
+ *
+ * @author Roshan Seth
+ */
+
 package Pieces;
 
 import main.Board;
@@ -10,6 +16,11 @@ public class Rook extends Piece {
 	super(pieceName, color);
 	// TODO Auto-generated constructor stub
     }
+
+    /**
+     * @param move that is inputed by user
+     * @return return true if Rook is making a legal move
+     */
 
     @Override
     public boolean isLegalMove(String move) {
@@ -57,6 +68,10 @@ public class Rook extends Piece {
 
 	return false;
     }
+
+    /**
+     * @return return true if the Rook moved from it's original location
+     */
 
     public boolean didMove() {
 	return didMove;

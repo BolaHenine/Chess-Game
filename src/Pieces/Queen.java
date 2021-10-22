@@ -1,3 +1,9 @@
+/**
+ * @author Bola Henine
+ *
+ * @author Roshan Seth
+ */
+
 package Pieces;
 
 import main.Board;
