@@ -6,7 +6,7 @@
 
 package Pieces;
 
-import main.Board;
+import chess.Board;
 
 /**
  *

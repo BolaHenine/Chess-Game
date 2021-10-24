@@ -4,7 +4,7 @@
  * @author Roshan Seth
  */
 
-package main;
+package chess;
 
 import java.util.Scanner;
 

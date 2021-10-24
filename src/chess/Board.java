@@ -4,7 +4,7 @@
  * @author Roshan Seth
  */
 
-package main;
+package chess;
 
 import Pieces.Bishop;
 import Pieces.King;
